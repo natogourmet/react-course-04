@@ -3,13 +3,11 @@ export const getGifs = async (category: string) => {
   const resp: Response = await fetch(url);
   const { data } = await resp.json();
 
-  const gifs = data.map((img: any) => {
+  return data.map((img: any) => {
     return {
       id: img.id,
       title: img.title,
       url: img.images.downsized_medium.url,
     };
   });
-
-  console.log(gifs);
 };
