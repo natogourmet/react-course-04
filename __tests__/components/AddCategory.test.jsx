@@ -13,7 +13,7 @@ describe('Tests on AddCategory Component', () => {
   test('should call onImputSubmit if input is valid', () => {
     const inputValue = 'Jotaro';
     const onInputSubmit = jest.fn();
-    
+
     render(<AddCategory onInputSubmit={onInputSubmit} />);
 
     const input = screen.getByRole('textbox');
@@ -23,6 +23,22 @@ describe('Tests on AddCategory Component', () => {
     fireEvent.submit(form);
 
     expect(input.value).toBe('');
-    expect( onInputSubmit ).toHaveBeenCalledWith( inputValue );
+    expect(onInputSubmit).toHaveBeenCalledWith(inputValue);
+  });
+
+  test('should not call onImputSubmit if input is invalid', () => {
+    const inputValue = '';
+    const onInputSubmit = jest.fn();
+
+    render(<AddCategory onInputSubmit={onInputSubmit} />);
+
+    const input = screen.getByRole('textbox');
+    const form = screen.getByRole('form');
+
+    fireEvent.input(input, { target: { value: inputValue } });
+    fireEvent.submit(form);
+
+    expect(input.value).toBe('');
+    expect(onInputSubmit).not.toHaveBeenCalled();
   });
 });
