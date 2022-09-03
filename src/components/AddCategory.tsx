@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 type props = {
   onInputSubmit: (category: string) => void;
@@ -20,8 +21,12 @@ export const AddCategory = ({ onInputSubmit }: props) => {
         type="text"
         placeholder="Add Category"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {setInputValue(e.target.value)}}
       />
     </form>
   );
 };
+
+AddCategory.propTypes = {
+  onInputSubmit: PropTypes.func.isRequired,
+}
