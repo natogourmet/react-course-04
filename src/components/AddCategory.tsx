@@ -16,7 +16,7 @@ export const AddCategory = ({ onInputSubmit }: props) => {
   };
 
   return (
-    <form action="" onSubmit={onSubmit}>
+    <form action="" onSubmit={onSubmit} aria-label="form">
       <input
         type="text"
         placeholder="Add Category"

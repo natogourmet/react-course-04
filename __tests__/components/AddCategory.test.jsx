@@ -7,6 +7,19 @@ describe('Tests on AddCategory Component', () => {
     const input = screen.getByRole('textbox');
     fireEvent.input(input, { target: { value: 'Jotaro' } });
 
-    expect( input.value ).toBe('Jotaro');
+    expect(input.value).toBe('Jotaro');
+  });
+
+  test('should call onImputSubmit if input is valid', () => {
+    const inputValue = 'Jotaro';
+    render(<AddCategory onInputSubmit={() => {}} />);
+
+    const input = screen.getByRole('textbox');
+    const form = screen.getByRole('form');
+
+    fireEvent.input(input, { target: { value: inputValue } });
+    fireEvent.submit(form);
+
+    expect(input.value).toBe('');
   });
 });
