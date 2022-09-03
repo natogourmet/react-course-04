@@ -12,7 +12,9 @@ describe('Tests on AddCategory Component', () => {
 
   test('should call onImputSubmit if input is valid', () => {
     const inputValue = 'Jotaro';
-    render(<AddCategory onInputSubmit={() => {}} />);
+    const onInputSubmit = jest.fn();
+    
+    render(<AddCategory onInputSubmit={onInputSubmit} />);
 
     const input = screen.getByRole('textbox');
     const form = screen.getByRole('form');
@@ -21,5 +23,6 @@ describe('Tests on AddCategory Component', () => {
     fireEvent.submit(form);
 
     expect(input.value).toBe('');
+    expect( onInputSubmit ).toHaveBeenCalledWith( inputValue );
   });
 });
